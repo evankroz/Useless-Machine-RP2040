@@ -22,20 +22,27 @@ def move(servo, target_angle, delay = 0.01, speed = 10):
     for angle in range(int(servo.angle), target_angle, step):
         servo.angle = angle
         time.sleep(delay)
+def action1():
+    move(servo15, 115, delay=0.01, speed=4)
+    move(servo12, 40, delay=0.05, speed=1)
+    move(servo12, 180, delay=0.01, speed=15)
+def action2():
+    count = 0
+    while count < 3:
+        move(servo15, 115, delay=0.01, speed=4)
+        move(servo12, 125, delay=0.01, speed=15)
+        move(servo12, 0, delay=0.01, speed=15)
+        time.sleep(0.01)
+        count += 1
+def action3():
+    move(servo15, 115, delay=0.01, speed=10)
+    move(servo12, 125, delay=0.01, speed=10)
+    move(servo12, 0, delay=0.01, speed=10)
 
 #main code here
 while True:
     if switch.value:
-        count = 0
-        while count < 7:
-            move(servo15, 115, delay=0.01, speed=4)
-            move(servo12, 135, delay=0.01, speed=15)
-            move(servo12, 0, delay=0.01, speed=15)
-            time.sleep(0.01)
-            count += 1
-        move(servo15, 115, delay=0.01, speed=4)
-        move(servo12, 90, delay=0.05, speed=5)
-        move(servo12, 180, delay=0.01, speed=15)
+        random.choice(action1, action2, action3)
         time.sleep (0.5)
         while switch.value:
             move(servo12, 0, delay=0.01, speed=10)
