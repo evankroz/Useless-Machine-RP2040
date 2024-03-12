@@ -5,7 +5,8 @@ import pwmio
 import digitalio
 from adafruit_motor import servo
 
-
+pwm_servo14 = pwmio.PWMOut(board.GP14, frequency=50)
+servo14 = servo.Servo(pwm_servo14)
 pwm_servo12= pwmio.PWMOut(board.GP12, frequency=50)
 servo12 = servo.Servo(pwm_servo12)
 pwm_servo15 = pwmio.PWMOut(board.GP15, frequency=50)
@@ -16,6 +17,7 @@ switch.pull = digitalio.Pull.DOWN
 
 servo12.angle = 0
 servo15.angle = 15
+servo14.angle = 100
 
 def move(servo, target_angle, delay = 0.01, speed = 10):
     step = speed if target_angle > servo.angle else -speed
@@ -50,6 +52,7 @@ action_list = [action1, action2, action3]
 while True:
     if switch.value:
         random.choice(action_list)()
+        move(servo14, 100, delay=0.01, speed=12)
         time.sleep (0.01)
         while switch.value:
             move(servo12, 0, delay=0.01, speed=10)
