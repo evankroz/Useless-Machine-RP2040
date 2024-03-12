@@ -38,11 +38,11 @@ def action3():
     move(servo15, 115, delay=0.01, speed=10)
     move(servo12, 125, delay=0.01, speed=10)
     move(servo12, 0, delay=0.01, speed=10)
-
+action_list = [action1, action2, action3]
 #main code here
 while True:
     if switch.value:
-        random.choice(action1, action2, action3)
+        random.choice(action_list)()
         time.sleep (0.5)
         while switch.value:
             move(servo12, 0, delay=0.01, speed=10)
