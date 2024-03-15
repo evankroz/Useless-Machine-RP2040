@@ -148,10 +148,12 @@ def play_melody(melody, tempo):
 
 # multiple actions
 def action1():
+    play_melody(melody, tempo)
     move(servo15, 115, delay=0.01, speed=4)
     move(servo12, 40, delay=0.05, speed=1)
     move(servo12, 180, delay=0.01, speed=15)
 def action2():
+    play_melody(melody, tempo)
     move(servo15, 115, delay=0.01, speed=4)
     count = 0
     while count < 3:
